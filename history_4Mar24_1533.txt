@@ -1,0 +1,16 @@
+  991  ssh root@13.38.98.99
+  992  ssh mystic@10.100.12.2
+  993  exit
+  994  ssh root@10.100.11.2
+  995  ssh root@10.100.10.2
+  996  ssh root@10.100.10.2
+  997  ssh root@10.100.10.2
+  998  exit
+  999  ssh root@10.101.12.1
+ 1000  ssh root@10.101.12.1
+ 1001  python3 -m unittest discover tests 2>&1 /dev/null | tail -n 1
+ 1002  HBNB_ENV=test HBNB_MYSQL_USER=hbnb_test HBNB_MYSQL_PWD=hbnb_test_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_test_db HBNB_TYPE_STORAGE=db python3 -m unittest discover tests 2>&1 /dev/null | tail -n 1
+ 1003  cat test_params_create | ./console.py
+ 1004  ls
+ 1005  cat test_params_create | ./console.py
+ 1006  cat setup_mysql_dev.sql | mysql -hlocalhost -uroot -p
