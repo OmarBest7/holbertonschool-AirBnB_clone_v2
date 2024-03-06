@@ -6,7 +6,15 @@ from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
 from os import getenv
 
-
+place_amenity = Table('place_amenity', Base.metadata,
+                      Column('place_id', String(60),
+                             ForeignKey('places.id'),
+                             primary_key=True,
+                             nullable=False),
+                      Column('amenity_id', String(60),
+                             ForeignKey('amenities.id'),
+                             primary_key=True,
+                             nullable=False))
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -28,6 +36,10 @@ class Place(BaseModel, Base):
         reviews = relationship('Review',
                                cascade="all, delete, delete-orphan",
                                backref="place")
+        amenities = relationship("Amenity",
+                                 secondary=place_amenity,
+                                 back_populates='place_amenities',
+                                 viewonly=False)        
     else:
         @property
         def reviews(self):
@@ -39,3 +51,24 @@ class Place(BaseModel, Base):
                 if val.place_id == self.id:
                     reviewList.append(val)
             return reviewList
+        @property
+        def amenities(self):
+            """ getter for amenity table.
+                returns the list of Amenity instances where Amenity.id
+                is linked to Place
+            """
+            from models import storage
+            from models.amenity import Amenity
+            amenity_list = []
+            amenity_dict = storage.all(Amenity)
+
+            for amenity_inst in amenity_dict.values():
+                if amenity_inst.id == self.amenity_id:
+                    amenity_list.append(amenity_inst)
+            return amenity_list
+
+        @amenities.setter
+        def amenities(self, obj=None):
+            """ Appends amenity ids to the attribute """
+            if type(obj) is Amenity and obj.id not in self.amenity_ids:
+                self.amenity_ids.append(obj.id)
