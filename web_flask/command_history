@@ -1,0 +1,28 @@
+    1  apt update
+    2  apt install mysql-server
+    3  apt install python3-dev
+    4  apt-get install libmysqlclient-dev
+    5  apt-get install zlib1g-dev
+    6  pip3 install mysqlclient
+    7  echo "Previous command throws an error of dependency"
+    8  apt-get install pkg-config
+    9  pip3 install SQLAlchemy
+   10  apt install mysql-server
+   11  systemctl start mysql.service
+   12  echo "Previous command is incorrect"
+   13  service mysql start
+   14  pip install PyMySQL
+   15  echo "until here environment is ready for working"
+   16  cat 100-hbnb.sql | mysql -uroot -p
+   17  cd web_flask/
+   18  cat 100-hbnb.sql | mysql -uroot -p
+   19  pip3 install flask
+   20  pip install cryptography
+   21  curl 0.0.0.0:5000/states_list ; echo ""
+   22  git config --global user.name "ROB64 H"
+   23  git config --global user.email "rob64@hcontainer.com"
+   24  curl 0.0.0.0:5000/cities_by_states ; echo ""
+   25  curl 0.0.0.0:5000/states ; echo ""
+   26  curl 0.0.0.0:5000/states/421a55f4-7d82-47d9-b54c-a76916479552 ; echo ""
+   27  curl 0.0.0.0:5000/states/d2398800-dd87-482b-be21-50a3063858ad ; echo ""
+   28  history > command_history
